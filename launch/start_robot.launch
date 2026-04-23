@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- ===== ARGUMENTS ===== -->
+  <arg name="gui"          default="true"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="paused"       default="false"/>
+
+  <!-- ===== ROBOT DESCRIPTION ===== -->
+  <param name="robot_description"
+    command="$(find xacro)/xacro
+    $(find colour_sorting_robot)/urdf/robot.urdf.xacro"/>
+
+  <param name="use_sim_time" value="$(arg use_sim_time)"/>
+
+  <!-- ===== GAZEBO WORLD ===== -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name"
+      value="$(find colour_sorting_robot)/worlds/warehouse.world"/>
+    <arg name="paused"       value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="gui"          value="$(arg gui)"/>
+    <arg name="headless"     value="false"/>
+    <arg name="debug"        value="false"/>
+  </include>
+
+  <!-- ===== SPAWN ROBOT IN GAZEBO ===== -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
+    respawn="false" output="screen"
+    args="-urdf -model colour_sorting_robot
+          -param robot_description
+          -x 0.0 -y 0.0 -z 0.1"/>
+
+  <!-- ===== ROBOT STATE PUBLISHER ===== -->
+  <node name="robot_state_publisher"
+    pkg="robot_state_publisher"
+    type="robot_state_publisher"
+    respawn="false" output="screen"/>
+
+  <!-- ===== JOINT STATE PUBLISHER ===== -->
+  <node name="joint_state_publisher"
+    pkg="joint_state_publisher"
+    type="joint_state_publisher">
+    <param name="use_gui" value="false"/>
+  </node>
+
+  <!-- ===== COLOUR DETECTOR NODE ===== -->
+  <node name="colour_detector"
+    pkg="colour_sorting_robot"
+    type="colour_detector.py"
+    respawn="false" output="screen"/>
+
+  <!-- ===== SORTING CONTROLLER (delayed 5s for Gazebo to load) ===== -->
+  <node name="sorting_controller"
+    pkg="colour_sorting_robot"
+    type="sorting_controller.py"
+    respawn="false" output="screen"
+    launch-prefix="bash -c 'sleep 5; $0 $@'"/>
+
+  <!-- ===== RVIZ ===== -->
+  <node name="rviz" pkg="rviz" type="rviz"
+    args="-d $(find colour_sorting_robot)/config/robot.rviz"
+    respawn="false" output="screen"/>
+
+</launch>

@@ -1,0 +1,215 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <world name="warehouse">
+
+    <!-- ===== LIGHTING ===== -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- ===== GROUND PLANE ===== -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- ===== WAREHOUSE WALLS ===== -->
+
+    <!-- South Wall -->
+    <model name="wall_south">
+      <static>true</static>
+      <pose>0 -4 1 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>8 0.2 2</size></box></geometry></collision>
+        <visual name="vis">
+          <geometry><box><size>8 0.2 2</size></box></geometry>
+          <material><ambient>0.7 0.7 0.7 1</ambient></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- North Wall -->
+    <model name="wall_north">
+      <static>true</static>
+      <pose>0 4 1 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>8 0.2 2</size></box></geometry></collision>
+        <visual name="vis">
+          <geometry><box><size>8 0.2 2</size></box></geometry>
+          <material><ambient>0.7 0.7 0.7 1</ambient></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- West Wall -->
+    <model name="wall_west">
+      <static>true</static>
+      <pose>-4 0 1 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.2 8 2</size></box></geometry></collision>
+        <visual name="vis">
+          <geometry><box><size>0.2 8 2</size></box></geometry>
+          <material><ambient>0.7 0.7 0.7 1</ambient></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- East Wall -->
+    <model name="wall_east">
+      <static>true</static>
+      <pose>4 0 1 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.2 8 2</size></box></geometry></collision>
+        <visual name="vis">
+          <geometry><box><size>0.2 8 2</size></box></geometry>
+          <material><ambient>0.7 0.7 0.7 1</ambient></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ===== SORTING BINS ===== -->
+
+    <!-- Red Bin -->
+    <model name="bin_red">
+      <static>true</static>
+      <pose>2.5 2.5 0.15 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.6 0.6 0.3</size></box></geometry></collision>
+        <visual name="vis">
+          <geometry><box><size>0.6 0.6 0.3</size></box></geometry>
+          <material><ambient>1 0 0 1</ambient><diffuse>1 0 0 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Green Bin -->
+    <model name="bin_green">
+      <static>true</static>
+      <pose>2.5 0 0.15 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.6 0.6 0.3</size></box></geometry></collision>
+        <visual name="vis">
+          <geometry><box><size>0.6 0.6 0.3</size></box></geometry>
+          <material><ambient>0 1 0 1</ambient><diffuse>0 1 0 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Blue Bin -->
+    <model name="bin_blue">
+      <static>true</static>
+      <pose>2.5 -2.5 0.15 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.6 0.6 0.3</size></box></geometry></collision>
+        <visual name="vis">
+          <geometry><box><size>0.6 0.6 0.3</size></box></geometry>
+          <material><ambient>0 0 1 1</ambient><diffuse>0 0 1 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ===== COLOURED PACKAGES (to be picked) ===== -->
+
+    <!-- Red Package 1 -->
+    <model name="pkg_red_1">
+      <static>false</static>
+      <pose>-1.5 1.0 0.1 0 0 0</pose>
+      <link name="link">
+        <inertial><mass>0.3</mass></inertial>
+        <collision name="col"><geometry><box><size>0.2 0.2 0.2</size></box></geometry></collision>
+        <visual name="vis">
+          <geometry><box><size>0.2 0.2 0.2</size></box></geometry>
+          <material><ambient>1 0 0 1</ambient><diffuse>1 0 0 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Green Package 1 -->
+    <model name="pkg_green_1">
+      <static>false</static>
+      <pose>-1.5 0.0 0.1 0 0 0</pose>
+      <link name="link">
+        <inertial><mass>0.3</mass></inertial>
+        <collision name="col"><geometry><box><size>0.2 0.2 0.2</size></box></geometry></collision>
+        <visual name="vis">
+          <geometry><box><size>0.2 0.2 0.2</size></box></geometry>
+          <material><ambient>0 1 0 1</ambient><diffuse>0 1 0 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Blue Package 1 -->
+    <model name="pkg_blue_1">
+      <static>false</static>
+      <pose>-1.5 -1.0 0.1 0 0 0</pose>
+      <link name="link">
+        <inertial><mass>0.3</mass></inertial>
+        <collision name="col"><geometry><box><size>0.2 0.2 0.2</size></box></geometry></collision>
+        <visual name="vis">
+          <geometry><box><size>0.2 0.2 0.2</size></box></geometry>
+          <material><ambient>0 0 1 1</ambient><diffuse>0 0 1 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Red Package 2 -->
+    <model name="pkg_red_2">
+      <static>false</static>
+      <pose>-2.5 1.5 0.1 0 0 0</pose>
+      <link name="link">
+        <inertial><mass>0.3</mass></inertial>
+        <collision name="col"><geometry><box><size>0.2 0.2 0.2</size></box></geometry></collision>
+        <visual name="vis">
+          <geometry><box><size>0.2 0.2 0.2</size></box></geometry>
+          <material><ambient>1 0 0 1</ambient><diffuse>1 0 0 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Green Package 2 -->
+    <model name="pkg_green_2">
+      <static>false</static>
+      <pose>-2.5 -0.5 0.1 0 0 0</pose>
+      <link name="link">
+        <inertial><mass>0.3</mass></inertial>
+        <collision name="col"><geometry><box><size>0.2 0.2 0.2</size></box></geometry></collision>
+        <visual name="vis">
+          <geometry><box><size>0.2 0.2 0.2</size></box></geometry>
+          <material><ambient>0 1 0 1</ambient><diffuse>0 1 0 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Blue Package 2 -->
+    <model name="pkg_blue_2">
+      <static>false</static>
+      <pose>-2.5 -1.5 0.1 0 0 0</pose>
+      <link name="link">
+        <inertial><mass>0.3</mass></inertial>
+        <collision name="col"><geometry><box><size>0.2 0.2 0.2</size></box></geometry></collision>
+        <visual name="vis">
+          <geometry><box><size>0.2 0.2 0.2</size></box></geometry>
+          <material><ambient>0 0 1 1</ambient><diffuse>0 0 1 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+  </world>
+</sdf>
+```
+
+Save and close.
+
+---
+
+### 3.2 — Quick preview of the layout
+```
++----------------------------------+
+|  WAREHOUSE                       |
+|                                  |
+|  [pkg_red]   [pkg_green]         |
+|  [pkg_blue]                      |
+|        🤖 (robot starts here)    |
+|                    [BIN_RED]     |
+|                    [BIN_GREEN]   |
+|                    [BIN_BLUE]    |
++----------------------------------+

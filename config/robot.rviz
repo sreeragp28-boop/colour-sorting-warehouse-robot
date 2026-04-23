@@ -1,0 +1,29 @@
+Panels:
+  - Class: rviz/Displays
+    Name: Displays
+  - Class: rviz/Views
+    Name: Views
+Visualization Manager:
+  Displays:
+    - Class: rviz/Grid
+      Name: Grid
+      Enabled: true
+    - Class: rviz/RobotModel
+      Name: RobotModel
+      Enabled: true
+    - Class: rviz/LaserScan
+      Name: LaserScan
+      Enabled: true
+      Topic: /scan
+      Size (m): 0.05
+      Color: 255; 0; 0
+    - Class: rviz/Camera
+      Name: Camera
+      Enabled: true
+      Topic: /camera/image_raw
+    - Class: rviz/TF
+      Name: TF
+      Enabled: true
+  Global Options:
+    Fixed Frame: base_footprint
+  Value: true
